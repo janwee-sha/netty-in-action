@@ -18,11 +18,7 @@ public class EchoServer {
     }
 
     public static void main(String[] args) throws Exception {
-       /* if (args.length != 1) {
-            System.err.println("Usage: " + EchoServer.class.getSimpleName() + " ");
-            return;
-        }*/
-        int port = /*Integer.parseInt(args[0])*/9091;
+        int port = 9091;
         new EchoServer(port).start();
 
     }
