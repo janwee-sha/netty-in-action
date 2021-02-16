@@ -38,8 +38,9 @@ public class EchoClient {
                             channel.pipeline().addLast(new EchoClientHandler());
                         }
                     });//在创建Channel时，向ChannelPipeline中添加一个EchoClientHandler实例
-            ChannelFuture future = b.connect().sync();//阻塞等待连接完成
-            future.channel().closeFuture().sync();//阻塞等待Channel关闭
+            ChannelFuture cFuture = b.connect().sync();//阻塞等待连接完成
+            cFuture.addListener(future -> System.out.println("Connected successfully..."));
+            cFuture.channel().closeFuture().sync();//阻塞等待Channel关闭
         } finally {
             group.shutdownGracefully().sync();//关闭线程池并且释放所有的资源
         }
